@@ -1,10 +1,10 @@
 const { test, expect } = require('@playwright/test');
-
+test.setTimeout(80000);
 test('Test Case 1: Register User', async ({ page }) => {
     // ১. ব্রাউজার লঞ্চ করা (প্লেরাইট অটোমেটিক করে দেয়)
     
     // ২. URL-এ নেভিগেট করা
-    await page.goto('http://automationexercise.com');
+    await page.goto('http://automationexercise.com', { timeout: 60000 });
 
 
     // ৩. হোম পেজ সফলভাবে দৃশ্যমান কিনা তা যাচাই করা
