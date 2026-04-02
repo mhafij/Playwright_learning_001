@@ -24,6 +24,8 @@ test('Test Case 1: Register User', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Signup / Login' }).click();
 
+    await page.locator('[data-qa="signup-email"]').fill('peyanox650@feralrex.com');
+
     // ৫. 'New User Signup!' দৃশ্যমান কিনা যাচাই করা
     await expect(page.getByText('New User Signup!')).toBeVisible();
     console.log('The new user signup title is exists');
@@ -32,7 +34,7 @@ test('Test Case 1: Register User', async ({ page }) => {
     // টিপস: প্রতিবার রান করার জন্য একটি ইউনিক ইমেল ব্যবহার করা ভালো
    // const uniqueEmail = `testuser_${Date.now()}@example.com`;
     await page.getByPlaceholder('Name').fill('John Doe');
-    await page.locator('[data-qa="signup-email"]').fill('peyanox661@feralrex.com');
+   // await page.locator('[data-qa="signup-email"]').fill('peyanox661@feralrex.com');
     const button = await page.getByRole('button', {name: 'Signup'});
     button.click();
 

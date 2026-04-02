@@ -15,6 +15,18 @@ test('Login, Check and Delete Account', async({ page }) =>{
         }
 
     await page.getByRole('link', { name: 'Signup / Login' }).click();
-    await page.getByRole('textbox', { name: 'Email Address' }).fill('test@gmail.com');
+
+    await page.locator('[data-qa="login-email"]').fill('peyanox650@feralrex.com');
+    await page.getByPlaceholder('Password').fill('SecurePass123');
+    await page.getByRole('button', {name:'Login' }).click();
+
+    const isLoggedIn = await page.getByText('Logged in as').isVisible();
+
+    if(isLoggedIn){
+        console.log('✅ Login Successful');
+    }else{
+        await expect(page.getByText('Your email or password is incorrect!')).toBeVisible();
+        console.log('❌ Login Failed - Email or Password is incorrect');
+    }
 
 });
