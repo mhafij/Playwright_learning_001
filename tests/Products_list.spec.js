@@ -33,4 +33,49 @@ test('Count and List Products', async ({ page }) => {
      // ✅ Option 3 — Link text দিয়ে
     await page.getByRole('link', { name: 'View Product' }).nth(1).click();
 
+   const T = await page.getByRole('link', { name: 'Write Your Review'}).isVisible();
+    console.log('The product detail page is successfully loaded', T);
+
+
+//    // await expect(page.getByTitle('T-shirts')).toHaveText('T-Shirts');
+    const productName = await page.getByTitle('T-Shirts').isVisible();
+    console.log('This product name is:', productName);
+
+    const CategoryName = await page.getByText('Category: Men').isVisible();
+    console.log('This category name is:', CategoryName);
+
+    await expect(page.getByText('Rs. 400')).toBeVisible();
+    console.log('The price name is displayed successfully');
+
+    const text = await page.locator('p:has-text("Availability")').textContent();
+
+        if (text.includes('In Stock')) {
+        console.log('✅ Product is in stock');
+        } else {
+        console.log('❌ Product is not in stock');
+        }
+
+        //Ternary Operator 
+        const condition = await page.locator('p:has-text("Condition")').textContent();
+
+            const message = condition.includes('New')
+            ? 'The product condition is new ✅'
+            : 'The product condition is not new ❌';
+
+    // const condition = await page.locator('p:has-text("Condition")').textContent();
+    //     if(condition.includes('New')){
+    //         console.log('✅ The product condition is new');
+    //     }else{
+    //         console.log('❌ The product condition is not new');
+    //     }
+
+    const Brand = await page.locator('p:has-text("Brand")').innerText();
+
+        if (Brand.includes('H&M')) {
+            console.log('✅ The product Brand is H&M');
+        } else {
+            console.log('❌ The product brand is not H&M');
+        }
+
+
 });
