@@ -55,19 +55,19 @@ test('Count and List Products', async ({ page }) => {
         console.log('❌ Product is not in stock');
         }
 
-        //Ternary Operator 
-        const condition = await page.locator('p:has-text("Condition")').textContent();
+        // //Ternary Operator 
+        // const condition = await page.locator('p:has-text("Condition")').textContent();
 
-            const message = condition.includes('New')
-            ? 'The product condition is new ✅'
-            : 'The product condition is not new ❌';
+        //     const message = condition.includes('New')
+        //     ? 'The product condition is new ✅'
+        //     : 'The product condition is not new ❌';
 
-    // const condition = await page.locator('p:has-text("Condition")').textContent();
-    //     if(condition.includes('New')){
-    //         console.log('✅ The product condition is new');
-    //     }else{
-    //         console.log('❌ The product condition is not new');
-    //     }
+    const condition = await page.locator('p:has-text("Condition")').textContent();
+        if(condition.includes('New')){
+            console.log('✅ The product condition is new');
+        }else{
+            console.log('❌ The product condition is not new');
+        }
 
     const Brand = await page.locator('p:has-text("Brand")').innerText();
 
